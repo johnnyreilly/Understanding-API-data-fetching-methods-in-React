@@ -7,17 +7,62 @@ slideNumber: false
 title: "VSCode Reveal intro"
 ---
 <!-- .slide: style="text-align: center;" -->
-
+<!-- talk to be delivered using VS Code Reveal extension: https://github.com/evilz/vscode-reveal -->
 ## TypeScript 4.4
 ### more readable code
 
+by [@johnny_reilly](https://twitter.com/johnny_reilly) 
+with [LogRocket](https://www.logrocket.com)
+
 ---
+
+<!-- 
+Like all good talks, this began with a tweet.
+I spotted, in my inbox, an automated email
+from GitHub. There'd been some activity on a
+GitHub issue I subscribed to, by my coding hero
+Anders Hejlsberg.
+
+It turned out that a very long lived issue
+had just been resolved by a PR of Anders'.
+I tweeted about it because I was excited about it
+-->
 
 [![Screenshot of initial tweet](images/tweet-screenshot.png =500x)](https://www.twitter.com/johnny_reilly/status/1408162514504933378)
 
 ---
 
+<!-- 
+I wasn't the only one!
+
+You can see from one of the reactions here
+that this change has a major impact on the
+readability of code in TypeScript
+
+That's what we're going to look into today.
+-->
+
 [![Screenshot of reactions on Twitter](images/reactions-on-twitter.png =400x)](https://twitter.com/zeh/status/1408208125572915202)
+
+---
+
+<!-- .slide: data-transition="slide" data-background="./images/announcing-typescript-0-8-background.png" data-background-transition="zoom" -->
+
+<!-- 
+
+In the early days of TypeScript, the type system
+was a great deal more limited. Union types
+did not exist. 
+
+-->
+
+## In the beginning...
+## TypeScript was `void`
+## and `any`
+
+---
+
+## Top types: the only way
 
 ---
 
@@ -737,7 +782,6 @@ See the next slide for a demo with the contents of this code block. {.fragment .
 
 
 
-In the beginning TypeScript was void and any
 
 Start with a simple adder function in TypeScript 1
 
