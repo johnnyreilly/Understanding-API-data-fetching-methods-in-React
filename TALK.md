@@ -52,17 +52,35 @@ That's what we're going to look into today.
 
 In the early days of TypeScript, the type system
 was a great deal more limited. Union types
-did not exist. 
+did not exist.
+
+*COMPLICATED! REPEAT!*  
+
+This meant, when writing a function that had
+parameters that could be of various types,
+the only way to model this was by using the top
+type of `any`
+
+> A top type is a supertype of every other type
 
 -->
 
 ## In the beginning...
 ## TypeScript was `void`
+
 ## and `any`
 
 ---
 
-## Top types: the only way
+<!-- 
+
+Let's make this meaningful by writing some code.
+
+-->
+
+## add(1, '7', '3', 9)
+
+## [The only way is `any`](https://www.typescriptlang.org/play?ts=3.3.3#code/GYVwdgxgLglg9mABAQwCaoBQDodQBYxgDmAzgCpwCC6AXCmAJ4DaAugJR1ggC2ARgKYAnRAG8AUIkmIANvyiIocKMmmIAvIgAMAbglTgcYRggIS8-ISIVqqRHGAKCxclXRtReqVJgOMUBgAO-PaOltbo6moaAORmgpbR7uJeKVKKyqoA1BoAcjwCgn5OVq6obLqpkgC+iPzSJPwelSnpKojZocThqBWVVZ6I-V6CciCCSK3Suv1iJmAkcLJY0nBEGGiYAIwANIjRAOzRu9EAzEeIAJxsbEA) {.fragment .fade-up}
 
 ---
 
