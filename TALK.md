@@ -84,6 +84,33 @@ Let's make this meaningful by writing some code.
 
 ---
 
+<!--
+
+When TypeScript 1.4 landed it brought
+a new feature called "union types"
+which enabled the modelling of a variable
+having multiple explicit types.
+
+It had a sister feature called "type aliases"
+which "variable-ified" a type, thus reducing verbosity.
+
+Interestingly union types had already landed
+in Flow and up to that point in time, were
+a compelling reason to favour Flow over
+TypeScript
+
+-->
+
+### TypeScript 1.4
+#### State of the union (type)
+
+- [Union types](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-4.html#union-types)
+- [Type aliases](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-4.html#type-aliases)
+
+
+
+---
+
 # some Table
 
 |             |          Grouping           ||
