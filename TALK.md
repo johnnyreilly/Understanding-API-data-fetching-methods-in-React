@@ -68,7 +68,7 @@ type of `any`
 ## In the beginning...
 ## TypeScript was `void`
 
-## and `any`
+## and `any`  {.fragment .fade-up}
 
 ---
 
@@ -76,11 +76,43 @@ type of `any`
 
 Let's make this meaningful by writing some code.
 
+We'll consider a simple mechanism for adding up numbers,
+using TypeScript 1.0 syntax 
+
 -->
 
 ## add(1, '7', '3', 9)
 
 ## [The only way is `any`](https://www.typescriptlang.org/play?ts=3.3.3#code/GYVwdgxgLglg9mABAQwCaoBQDodQBYxgDmAzgCpwCC6AXCmAJ4DaAugJR1ggC2ARgKYAnRAG8AUIkmIANvyiIocKMmmIAvIgAMAbglTgcYRggIS8-ISIVqqRHGAKCxclXRtReqVJgOMUBgAO-PaOltbo6moaAORmgpbR7uJeKVKKyqoA1BoAcjwCgn5OVq6obLqpkgC+iPzSJPwelSnpKojZocThqBWVVZ6I-V6CciCCSK3Suv1iJmAkcLJY0nBEGGiYAIwANIjRAOzRu9EAzEeIAJxsbEA) {.fragment .fade-up}
+
+---
+
+<!--
+
+Here's an implementation of our adder function
+You can see that it would take our combination
+of strings and numbers and would add them 
+
+But - it's not type safe at all
+
+-->
+
+
+```ts
+function add(...thingsToAdd: any[]): number {
+    let total = 0;
+    for (const thingToAdd of thingsToAdd) {
+        if (typeof thingToAdd === 'string') {
+            total += Number(thingToAdd);
+        } else {
+            total += thingToAdd;
+        }
+    }
+    return total;
+}
+
+add(1, '7', '3', 9) // 20
+```
 
 ---
 
@@ -107,7 +139,53 @@ TypeScript
 - [Union types](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-4.html#union-types)
 - [Type aliases](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-4.html#type-aliases)
 
+---
 
+<!-- .slide: style="text-align: left;" -->
+<!--
+
+...
+
+-->
+
+[Applied union types:](https://www.typescriptlang.org/play?ts=3.3.3#code/GYVwdgxgLglg9mABAQwCaoBQDodQBYxgDmAzgCpwCC6AXIhmCALYBGApgE6IA+iJUHQkQCUAbQC6wuo1adEAbwBQiFYgA2bKIihwoyNYgC8iAAwBuZauBwuGCAn7aCxCtVSI4wJ0PJV0whUtVVRgvDCgATwAHNk9vFz93Q2TEAHJ+QWJUgKVgvNUdPQMAamMAOWZ2DnDnIld-C3yVAF9ENjUSNkCmvML9RFL4usTGpuagxHHgjk0QDiQ+tQtxxXswEjgNLDU4Igw0TABGABo0gHZU09SAZkvEAE5hYSA)
+
+```ts
+any -> number | string
+```
+
+```ts
+function add(...thingsToAdd: (number | string)[]): number {
+    let total = 0;
+    for (const thingToAdd of thingsToAdd) {
+        if (typeof thingToAdd === 'string') {
+            total += Number(thingToAdd);
+        } else {
+            total += thingToAdd;
+        }
+    }
+    return total;
+}
+```
+
+---
+
+<!-- .slide: style="text-align: center;" -->
+<!--
+
+type aliases are variables for types
+
+much more readable!
+
+-->
+
+### Let's apply type aliases
+
+```ts
+(number | string) -> NumberOrString
+```
+
+[show in playground](https://www.typescriptlang.org/play?ts=3.3.3#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQGIqpQA+UAzroUQFCsBmcBAxsHgHsCUAIYATMQAoAdLOAALFgwAqAgIISAXLCppMOfMQDaAXQCU2ysjRQA3qyiOoAGwjAowAcBHOyUAAwA3A5OHAI0kjxCTB6KxKoaYlACHLFKCRJmdiFOTnipkqCQKWnx6hJkpOQA5EyGRNVZ9rktTp7evgDU5PDWqIVxRBliZsGtjgC+UBDODNDN47ntPlDdpUPlYmPjEzlQu7mobnCowsvOwbusUQQMAq7SzgJEkuJSAIwANFDVAOzV32qAGYAVAAJxmMxAA)
 
 ---
 
