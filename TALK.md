@@ -72,18 +72,37 @@ type of `any`
 
 ---
 
+<!--
+
+We're going to write a simple function in this talk
+that is as type safe and readable as it can be
+
+We'll look at how TypeScript has facilitated that
+as it has evolved as a language.
+
+We'll see that over time both readability
+and type safety improve
+
+-->
+
+## The mission:
+## Write type safe code
+## that is readable
+
+---
+
 <!-- 
 
-Let's make this meaningful by writing some code.
-
-We'll consider a simple mechanism for adding up numbers,
+So let's being.  We're going to write 
+an "add" function; a simple mechanism 
+for adding up numbers,
 using TypeScript 1.0 syntax 
 
 -->
 
 ## add(1, '7', '3', 9)
 
-## [The only way is `any`](https://www.typescriptlang.org/play?ts=3.3.3#code/GYVwdgxgLglg9mABAQwCaoBQDodQBYxgDmAzgCpwCC6AXCmAJ4DaAugJR1ggC2ARgKYAnRAG8AUIkmIANvyiIocKMmmIAvIgAMAbglTgcYRggIS8-ISIVqqRHGAKCxclXRtReqVJgOMUBgAO-PaOltbo6moaAORmgpbR7uJeKVKKyqoA1BoAcjwCgn5OVq6obLqpkgC+iPzSJPwelSnpKojZocThqBWVVZ6I-V6CciCCSK3Suv1iJmAkcLJY0nBEGGiYAIwANIjRAOzRu9EAzEeIAJxsbEA) {.fragment .fade-up}
+## The only way is `any` {.fragment .fade-up}
 
 ---
 
@@ -96,7 +115,6 @@ of strings and numbers and would add them
 But - it's not type safe at all
 
 -->
-
 
 ```ts
 function add(...thingsToAdd: any[]): number {
@@ -170,6 +188,37 @@ function add(...thingsToAdd: (number | string)[]): number {
 
 ---
 
+<!-- .slide: style="text-align: left;" -->
+<!--
+
+...
+
+-->
+
+[Applied type aliases:](https://www.typescriptlang.org/play?ts=3.3.3#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQGIqpQA+UAzroUQFCsBmcBAxsHgHsCUAIYATMQAoAdLOAALFgwAqAgIISAXLCppMOfMQDaAXQCU2ysjRQA3qyiOoAGwjAowAcBHOyUAAwA3A5OHAI0kjxCTB6KxKoaYlACHLFKCRJmdiFOTnipkqCQKWnx6hJkpOQA5EyGRNVZ9rktTp7evgDU5PDWqIVxRBliZsGtjgC+UBDODNDN47ntPlDdpUPlYmPjEzlQu7mobnCowsvOwbusUQQMAq7SzgJEkuJSAIwANFDVAOzV32qAGYAVAAJxmMxAA)
+
+```ts
+(number | string) -> NumberOrString
+```
+
+```ts
+type NumberOrString = number | string
+
+function add(...thingsToAdd: NumberOrString[]): number {
+    let total = 0;
+    for (const thingToAdd of thingsToAdd) {
+        if (typeof thingToAdd === 'string') {
+            total += Number(thingToAdd);
+        } else {
+            total += thingToAdd;
+        }
+    }
+    return total;
+}
+```
+
+---
+
 <!-- .slide: style="text-align: center;" -->
 <!--
 
@@ -182,10 +231,13 @@ much more readable!
 ### Let's apply type aliases
 
 ```ts
-(number | string) -> NumberOrString
 ```
 
-[show in playground](https://www.typescriptlang.org/play?ts=3.3.3#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQGIqpQA+UAzroUQFCsBmcBAxsHgHsCUAIYATMQAoAdLOAALFgwAqAgIISAXLCppMOfMQDaAXQCU2ysjRQA3qyiOoAGwjAowAcBHOyUAAwA3A5OHAI0kjxCTB6KxKoaYlACHLFKCRJmdiFOTnipkqCQKWnx6hJkpOQA5EyGRNVZ9rktTp7evgDU5PDWqIVxRBliZsGtjgC+UBDODNDN47ntPlDdpUPlYmPjEzlQu7mobnCowsvOwbusUQQMAq7SzgJEkuJSAIwANFDVAOzV32qAGYAVAAJxmMxAA)
+[show in playground]()
+
+---
+
+destructuring on multiple properties does not work
 
 ---
 
