@@ -8,14 +8,17 @@ showNotes: false
 title: "TypeScript 4.4 more readable code - @johnny_reilly with LogRocket"
 ---
 <!-- .slide: data-transition="slide" data-background="./images/typescript-4-4-more-readable-code.png"  -->
-<!-- talk to be delivered using VS Code Reveal extension: https://github.com/evilz/vscode-reveal -->
 ## TypeScript 4.4 :
 ## more readable code
 ### [@johnny_reilly](https://twitter.com/johnny_reilly) with [LogRocket](https://www.logrocket.com)
 
+<aside class="notes">
+talk to be delivered using VS Code Reveal extension: https://github.com/evilz/vscode-reveal
+</aside>
+
 ---
 
-<!-- 
+<aside class="notes">
 Like all good talks, this began with a tweet.
 I spotted, in my inbox, an automated email
 from GitHub. There'd been some activity on a
@@ -25,13 +28,13 @@ Anders Hejlsberg.
 It turned out that a very long lived issue
 had just been resolved by a PR of Anders'.
 I tweeted about it because I was excited about it
--->
+</aside>
 
 [![Screenshot of initial tweet](images/tweet-screenshot.png =500x)](https://www.twitter.com/johnny_reilly/status/1408162514504933378)
 
 ---
 
-<!-- 
+<aside class="notes"> 
 I wasn't the only one!
 
 You can see from one of the reactions here
@@ -39,7 +42,7 @@ that this change has a major impact on the
 readability of code in TypeScript
 
 That's what we're going to look into today.
--->
+</aside>
 
 [![Screenshot of reactions on Twitter](images/reactions-on-twitter.png =400x)](https://twitter.com/zeh/status/1408208125572915202)
 
@@ -47,7 +50,7 @@ That's what we're going to look into today.
 
 <!-- .slide: data-transition="slide" data-background="./images/announcing-typescript-0-8-background.png" data-background-transition="zoom" -->
 
-<!-- 
+<aside class="notes">
 
 In the early days of TypeScript, the type system
 was a great deal more limited. Union types
@@ -62,7 +65,7 @@ type of `any`
 
 > A top type is a supertype of every other type
 
--->
+</aside>
 
 ## In the beginning...
 ## TypeScript was `void`
@@ -71,7 +74,7 @@ type of `any`
 
 ---
 
-<!--
+<aside class="notes">
 
 We're going to write a simple function in this talk
 that is as type safe and readable as it can be
@@ -82,7 +85,7 @@ as it has evolved as a language.
 We'll see that over time both readability
 and type safety improve
 
--->
+</aside>
 
 ## The mission:
 ## Write type safe code
@@ -90,14 +93,14 @@ and type safety improve
 
 ---
 
-<!-- 
+<aside class="notes">
 
-So let's being.  We're going to write 
+We're going to write 
 an "add" function; a simple mechanism 
 for adding up numbers,
 using TypeScript 1.0 syntax 
 
--->
+</aside>
 
 ## add(1, '7', '3', 9)
 
@@ -105,7 +108,7 @@ using TypeScript 1.0 syntax
 
 ---
 
-<!--
+<aside class="notes">
 
 Here's an implementation of our adder function
 You can see that it would take our combination
@@ -113,7 +116,7 @@ of strings and numbers and would add them
 
 But - it's not type safe at all
 
--->
+</aside>
 
 ```ts
 function add(...thingsToAdd: any[]): number {
@@ -133,7 +136,7 @@ add(1, '7', '3', 9) // 20
 
 ---
 
-<!--
+<aside class="notes">
 
 When TypeScript 1.4 landed it brought
 a new feature called "union types"
@@ -148,7 +151,7 @@ in Flow and up to that point in time, were
 a compelling reason to favour Flow over
 TypeScript
 
--->
+</aside>
 
 ### TypeScript 1.4
 #### State of the union (type)
@@ -159,11 +162,10 @@ TypeScript
 ---
 
 <!-- .slide: style="text-align: left;" -->
-<!--
-
+<aside class="notes">
 ...
 
--->
+</aside>
 
 [Applied union types:](https://www.typescriptlang.org/play?ts=3.3.3#code/GYVwdgxgLglg9mABAQwCaoBQDodQBYxgDmAzgCpwCC6AXIhmCALYBGApgE6IA+iJUHQkQCUAbQC6wuo1adEAbwBQiFYgA2bKIihwoyNYgC8iAAwBuZauBwuGCAn7aCxCtVSI4wJ0PJV0whUtVVRgvDCgATwAHNk9vFz93Q2TEAHJ+QWJUgKVgvNUdPQMAamMAOWZ2DnDnIld-C3yVAF9ENjUSNkCmvML9RFL4usTGpuagxHHgjk0QDiQ+tQtxxXswEjgNLDU4Igw0TABGABo0gHZU09SAZkvEAE5hYSA)
 
@@ -188,11 +190,11 @@ function add(...thingsToAdd: (number | string)[]): number {
 ---
 
 <!-- .slide: style="text-align: left;" -->
-<!--
+<aside class="notes">
 
 ...
 
--->
+</aside>
 
 [Applied type aliases:](https://www.typescriptlang.org/play?ts=3.3.3#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQGIqpQA+UAzroUQFCsBmcBAxsHgHsCUAIYATMQAoAdLOAALFgwAqAgIISAXLCppMOfMQDaAXQCU2ysjRQA3qyiOoAGwjAowAcBHOyUAAwA3A5OHAI0kjxCTB6KxKoaYlACHLFKCRJmdiFOTnipkqCQKWnx6hJkpOQA5EyGRNVZ9rktTp7evgDU5PDWqIVxRBliZsGtjgC+UBDODNDN47ntPlDdpUPlYmPjEzlQu7mobnCowsvOwbusUQQMAq7SzgJEkuJSAIwANFDVAOzV32qAGYAVAAJxmMxAA)
 
@@ -219,13 +221,13 @@ function add(...thingsToAdd: NumberOrString[]): number {
 ---
 
 <!-- .slide: style="text-align: center;" -->
-<!--
+<aside class="notes">
 
 type aliases are variables for types
 
 much more readable!
 
--->
+</aside>
 
 ### Let's apply type aliases
 
