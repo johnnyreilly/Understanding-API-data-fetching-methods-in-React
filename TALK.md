@@ -14,6 +14,32 @@ title: "TypeScript 4.4 more readable code - LogRocket with @johnny_reilly"
 
 <aside class="notes">
 talk to be delivered using VS Code Reveal extension: https://github.com/evilz/vscode-reveal
+
+general welcome
+</aside>
+
+---
+
+<!-- .slide: data-transition="slide" data-background="./images/typescript-4-4-more-readable-code.png" -->
+## `whoami`
+
+- [@johnny_reilly](https://twitter.com/johnny_reilly) ❤️🌻
+
+- Blogging and open-source software
+
+ - TypeScript
+   - DefinitelyTyped
+   - ts-loader
+   - fork-ts-checker-webpack-plugin
+
+<aside class="notes">
+Hi everyone,
+
+My name is John Reilly and I'm a big fan of TypeScript.
+
+I'm an early adopter, I started using it right back when 0.8 was initially announced. I love static typing. 
+
+definitely typed / ts-loader / fork-ts-checker-webpack-plugin (webpack)
 </aside>
 
 ---
@@ -88,7 +114,7 @@ and type safety improve
 </aside>
 
 ## The mission:
-## Write type safe code
+## write type safe code
 ## that is readable
 
 ---
@@ -192,7 +218,11 @@ function add(...thingsToAdd: (number | string)[]): number {
 <!-- .slide: style="text-align: left;" -->
 <aside class="notes">
 
-...
+Talk through function - we are now both:
+- type safe
+- and have an expressively named type
+
+But this could still be made better...
 
 </aside>
 
@@ -220,6 +250,56 @@ function add(...thingsToAdd: NumberOrString[]): number {
 
 ---
 
+<!-- .slide: style="text-align: left;" -->
+<aside class="notes">
+
+Here we've made a slight change by using a const to narrow the type
+
+This is more readable, and it's idiomatic JS
+
+Tragically, and surprisingly, TypeScript < 4.4 doesn't like it
+
+Let's go to the playground and look at it
+- the code runs - this is correct code
+- TS doesn't remember that a type has been narrowed
+- but with 4.4 it does!
+
+</aside>
+
+[Type narrowing with a const:](https://www.typescriptlang.org/play?ts=3.3.3#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQGIqpQA+UAzroUQFCsBmcBAxsHgHsCUAIYATMQAoAdLOAALFgwAqAgIISAXLCppMOfMQDaAXQCU2ysjRQA3qyiOoAGwjAowAcBHOyUAAwA3A5OHAI0kjxCTB6KxKoaYlACHLFKCRJmdiFOTlEEMQzyAnDOYgDCAmg8EKrw1jTkoJApafHqEmSk5ADkTIZEPcE5uVB4qZJFJWWV1bUC9dRZ9qOrHl4+UADU5ItokgosGWJmwWtQAL5QEM4M0CvnTp7evjttRMdnaxcjP7mobjgqGEzx8wR+rHyDAErmkzgEREk4ikAEYADRQHoAdh6GJ6AGZcVAAJxmMxAA)
+
+```ts
+function add(...thingsToAdd: NumberOrString[]): number {
+    let total = 0;
+    for (const thingToAdd of thingsToAdd) {
+        const shouldCoerceToNumber = 
+          typeof thingToAdd === 'string';
+
+        if (shouldCoerceToNumber) {
+            total += Number(thingToAdd);
+        } else {
+            total += thingToAdd;
+        }
+    }
+    return total;
+}
+```
+
+---
+
+<!-- .slide: style="text-align: left;" -->
+<aside class="notes">
+
+
+</aside>
+
+### What else can we do?
+
+- [Type narrowing from unknown]()
+- [Type narrowing a discriminated union](https://www.typescriptlang.org/play?ts=4.4.2#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQBQU1UA3lKJAFxQDkhwERarA3FABMAhsCEsCiFKn4BfStQA+dBuAgtWnAB7A+gkWKgBnXIRIyKFAGZwCAY2B4A9gShCBAgBQA6H8AAWpoYAKo4Agu4s8MhomDj4xADaALoAlOKSaHRUNAA2EMAMjqI5ZFAADLzZ1JaOqFAets7GDAHEIeECUI6WLYHt7ilZNMNQjQTN9IzQcuT+pv0ClSM0Y82Gfo5wOQIAwo5othAhUVKlU2Sk5BoQ2nwWy9R4PR7rm9t7B0eOJ2iDtFUPajAIpCEoAanIP1QHjmbTC7i8wlEKSWDzkEByhmg-0Bw2BxSgEN6cI6iP0qOW5mGVJoqHycFQLnxoMq5goq0ceS8OUcRA8ALcngBw3oSIMAEYADQqZhsDhcHhQGTS4U0UX6dQAdlY0qm6i0OiVKsB6tE6gAzDqZWo2AbWEb5A9TQYAJy61TqeXcVD2mnUFIUFJAA)
+
+---
+
 <!-- .slide: style="text-align: center;" -->
 <aside class="notes">
 
@@ -229,12 +309,18 @@ much more readable!
 
 </aside>
 
-### Let's apply type aliases
+### [An idea for the future](https://www.typescriptlang.org/play?ts=3.3.3#code/MYewdgzgLgBAhgEwQJwKYQumBeGZUDuMAsnAA4A80yAlmAOYA0M1d9AfABQBQMfMAbQEByAFYgAFmDABPAPpoaAGyUzhzYQBlwCcMIC6+7gEoA3N1CRYqAB41oEHPCRoM6AHQS4ETmMnT5RRU1M25uGgAzGE5beygIYxgAb15+S2hnFHQIAC4WKFoGJ0Qstwh3elQoX3EpWQVUZVVhUIBfIA)
 
 ```ts
-```
+const addresses = new Map<string, string>(
+    [['johnny_reilly', 'London']]
+);
+const exists = addresses.has('johnny_reilly');
 
-[show in playground]()
+if (exists) {
+    const address: string = addresses.get('johnny_reilly');
+}
+```
 
 ---
 
