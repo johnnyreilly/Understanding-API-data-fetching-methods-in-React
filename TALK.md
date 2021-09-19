@@ -309,11 +309,13 @@ So far we've type narrowed primitives
 
 Let's look at discriminated unions
 
+Note that multiple destructured types does not work
+
 </aside>
 
 ### What else can we do?
 
-[Type narrowing a discriminated union](https://www.typescriptlang.org/play?ts=4.4.2#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQBQU1UA3lKJAFxQDkhwERarA3FABMAhsCEsCiFKn4BfStQA+dBuAgtWnAB7A+gkWKgBnXIRIyKFAGZwCAY2B4A9gShCBAgBQA6H8AAWpoYAKo4Agu4s8MhomDj4xADaALoAlOKSaHRUNAA2EMAMjqI5ZFAADLzZ1JaOqFAets7GDAHEIeECUI6WLYHt7ilZNMNQjQTN9IzQcuT+pv0ClSM0Y82Gfo5wOQIAwo5othAhUVKlU2Sk5BoQ2nwWy9R4PR7rm9t7B0eOJ2iDtFUPajAIpCEoAanIP1QHjmbTC7i8wlEKSWDzkEByhmg-0Bw2BxSgEN6cI6iP0qOW5mGVJoqHycFQLnxoMq5goq0ceS8OUcRA8ALcngBw3oSIMAEYADQqZhsDhcHhQGTS4U0UX6dQAdlY0qm6i0OiVKsB6tE6gAzDqZWo2AbWEb5A9TQYAJy61TqeXcVD2mnUFIUFJAA)
+[Type narrowing a discriminated union](https://www.typescriptlang.org/play?ts=4.4.2#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQBQU1UA3lKJAFxQDkhwERarA3FABMAhsCEsCiFKn4BfStQA+dBuAgtWnAB7A+gkWKgBnXIRIyKFAGZwCAY2B4A9gShCBAgBQA6H8AAWpoYAKo4Agu4s8MhomDj4xADaALoAlOKSaHRUNAA2EMAMjqI5ZFAADLzZ1JaOqFAets7GDAHEIeECUI6WLYHt7ilZNMNQjQTNhn6OcDkCAMKOaLYQIVFSpf6m-QJejNCkB2xaOpVVI3g9HpPTswtLK45raIO0ZyM0wEVCJQDU5E+oDybNphdxeYSiFKVd7UOQQHKGaCvGEjT7FKB-Xogjrg-TQmHmYaEmiofJwVAuNHfSrmChjQyOPJeHKOIgeM5uTxvGj0CEGACMABoVMw2BwuDwoDJhdzqLz9OoAOysYV7dTHVhSmUo+WidQAZhVIrURwg2k10vkMN1BgAnKrVOpxdxUBazikKCkgA)
 
 ```ts
 type NumberOrString = 
@@ -332,15 +334,13 @@ console.log(
 )
 ```
 
-
 ---
 
 <!-- .slide: style="text-align: center;" -->
 <aside class="notes">
 
-type aliases are variables for types
-
-much more readable!
+Finally, here's something in a similar space
+which perhaps TS may support in future
 
 </aside>
 
@@ -357,39 +357,19 @@ if (exists) {
 }
 ```
 
----
-
-destructuring on multiple properties does not work
 
 ---
 
+<!-- .slide: style="text-align: center;" -->
+<aside class="notes">
 
+Finally, here's something in a similar space
+which perhaps TS may support in future
 
+</aside>
 
+### TypeScript: getting better all the time
 
-
-
-WIP
-
-
-Start with a simple adder function in TypeScript 1
-
-Lack of union types so any. Talk about definitely typed and jQuery. Use API with setter for example
-
-Union types 1.4 - unknown as well?
-
-https://blog.logrocket.com/typescript-4-4-and-more-readable-code/
-
-https://github.com/microsoft/TypeScript/pull/44730
-
-https://github.com/microsoft/TypeScript/issues/12184 November 2016
-
-https://devblogs.microsoft.com/typescript/announcing-typescript-4-4-rc/?utm_source=typescript-weekly.com&utm_campaign=typescript_weekly_176&utm_medium=email
-
-https://github.com/microsoft/TypeScript/pull/44730
-
-Future stuff?
-if(map.has('item')) {
-  let value = map.get('item');
-  }
-
+- https://github.com/microsoft/TypeScript/pull/44730
+- https://github.com/microsoft/TypeScript/issues/12184 November 2016
+- https://blog.logrocket.com/typescript-4-4-and-more-readable-code/
