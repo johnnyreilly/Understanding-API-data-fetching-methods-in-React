@@ -250,6 +250,21 @@ function add(...thingsToAdd: NumberOrString[]): number {
 
 ---
 
+<aside class="notes">
+
+The next thing we want to talk about is the exciting
+feature that ships with TS 4.4.
+
+The title is not catchy - so let's look at what it unlocks
+
+</aside>
+
+### TypeScript 4.4
+
+- [Control Flow Analysis of Aliased Conditions and Discriminants](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html#control-flow-analysis-of-aliased-conditions-and-discriminants)
+
+---
+
 <!-- .slide: style="text-align: left;" -->
 <aside class="notes">
 
@@ -290,13 +305,33 @@ function add(...thingsToAdd: NumberOrString[]): number {
 <!-- .slide: style="text-align: left;" -->
 <aside class="notes">
 
+So far we've type narrowed primitives
+
+Let's look at discriminated unions
 
 </aside>
 
 ### What else can we do?
 
-- [Type narrowing from unknown]()
-- [Type narrowing a discriminated union](https://www.typescriptlang.org/play?ts=4.4.2#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQBQU1UA3lKJAFxQDkhwERarA3FABMAhsCEsCiFKn4BfStQA+dBuAgtWnAB7A+gkWKgBnXIRIyKFAGZwCAY2B4A9gShCBAgBQA6H8AAWpoYAKo4Agu4s8MhomDj4xADaALoAlOKSaHRUNAA2EMAMjqI5ZFAADLzZ1JaOqFAets7GDAHEIeECUI6WLYHt7ilZNMNQjQTN9IzQcuT+pv0ClSM0Y82Gfo5wOQIAwo5othAhUVKlU2Sk5BoQ2nwWy9R4PR7rm9t7B0eOJ2iDtFUPajAIpCEoAanIP1QHjmbTC7i8wlEKSWDzkEByhmg-0Bw2BxSgEN6cI6iP0qOW5mGVJoqHycFQLnxoMq5goq0ceS8OUcRA8ALcngBw3oSIMAEYADQqZhsDhcHhQGTS4U0UX6dQAdlY0qm6i0OiVKsB6tE6gAzDqZWo2AbWEb5A9TQYAJy61TqeXcVD2mnUFIUFJAA)
+[Type narrowing a discriminated union](https://www.typescriptlang.org/play?ts=4.4.2#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQBQU1UA3lKJAFxQDkhwERarA3FABMAhsCEsCiFKn4BfStQA+dBuAgtWnAB7A+gkWKgBnXIRIyKFAGZwCAY2B4A9gShCBAgBQA6H8AAWpoYAKo4Agu4s8MhomDj4xADaALoAlOKSaHRUNAA2EMAMjqI5ZFAADLzZ1JaOqFAets7GDAHEIeECUI6WLYHt7ilZNMNQjQTN9IzQcuT+pv0ClSM0Y82Gfo5wOQIAwo5othAhUVKlU2Sk5BoQ2nwWy9R4PR7rm9t7B0eOJ2iDtFUPajAIpCEoAanIP1QHjmbTC7i8wlEKSWDzkEByhmg-0Bw2BxSgEN6cI6iP0qOW5mGVJoqHycFQLnxoMq5goq0ceS8OUcRA8ALcngBw3oSIMAEYADQqZhsDhcHhQGTS4U0UX6dQAdlY0qm6i0OiVKsB6tE6gAzDqZWo2AbWEb5A9TQYAJy61TqeXcVD2mnUFIUFJAA)
+
+```ts
+type NumberOrString = 
+    { type: 'integer'; data: number; } 
+  | { type: 'text'; data: string }
+
+function add(...thingsToAdd: NumberOrString[]): number { /**/ }
+
+console.log(
+    add(
+        { data: 1, type: 'integer' }, 
+        { data: '7', type: 'text' }, 
+        { data: '3', type: 'text' }, 
+        { data: 9, type: 'integer' }
+    )
+)
+```
+
 
 ---
 
