@@ -14,7 +14,7 @@ title: "TypeScript 4.4 more readable code - LogRocket with @johnny_reilly"
 
 <aside class="notes">
 talk to be delivered using VS Code Reveal extension: https://github.com/evilz/vscode-reveal
-
+150% zoom for playground
 general welcome
 </aside>
 
@@ -130,34 +130,36 @@ using TypeScript 1.0 syntax
 
 ## add(1, '7', '3', 9)
 
-## The only way is `any` {.fragment .fade-up}
-
 ---
 
+<!-- .slide: style="text-align: left;" -->
 <aside class="notes">
 
 Here's an implementation of our adder function
 You can see that it would take our combination
 of strings and numbers and would add them 
 
-But - it's not type safe at all
+But - it's not type safe at all. We check at runtime
+that types are correct
 
 </aside>
 
+[We begin with vanilla JS:](https://www.typescriptlang.org/play?noImplicitAny=false&ts=3.3.3#code/GYVwdgxgLglg9mABAQwCaoBQDodQBYxgDmAzgCpwCC6AlIgN4BQiLiANgKZSJRxTJtEAXkQAGANzNWwOACdEGCAhLd8hIhWqpEcYDwLFyVWgymtWMPRigBPAA4dd+9ZvTChIgOQrZ6z3SZzINZefkEAahEAORAAWwAjDllrAw1jVBpJYJYAX0QONhIOREsFWwcnNWJXbQ8vMDjE2X9TbKDQgURI52r0rOy8gqLWtpC+Tu6qtK1+4JyzRHnzWS4QWSQOtkl5oA)
+
 ```ts
-function add(...thingsToAdd: any[]): number {
+function add(...thingsToAdd) {
     let total = 0;
     for (const thingToAdd of thingsToAdd) {
         if (typeof thingToAdd === 'string') {
             total += Number(thingToAdd);
+        } else if (typeof thingToAdd === 'number') {
+            total += thingToAdd;
         } else {
             total += thingToAdd;
         }
     }
     return total;
 }
-
-add(1, '7', '3', 9) // 20
 ```
 
 ---
@@ -268,7 +270,7 @@ The title is not catchy - so let's look at what it unlocks
 <!-- .slide: style="text-align: left;" -->
 <aside class="notes">
 
-Here we've made a slight change by using a const to narrow the type
+Here we've made a slight change by using a const (not let) to narrow the type
 
 This is more readable, and it's idiomatic JS
 
@@ -373,3 +375,4 @@ which perhaps TS may support in future
 - https://github.com/microsoft/TypeScript/pull/44730
 - https://github.com/microsoft/TypeScript/issues/12184 November 2016
 - https://blog.logrocket.com/typescript-4-4-and-more-readable-code/
+
