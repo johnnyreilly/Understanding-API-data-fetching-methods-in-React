@@ -269,7 +269,6 @@ The title is not catchy - so let's look at what it unlocks
 ### TypeScript 4.4
 
 - [Control Flow Analysis of Aliased Conditions and Discriminants](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html#control-flow-analysis-of-aliased-conditions-and-discriminants)
-- [Template literal types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html)
 
 ---
 
@@ -321,9 +320,8 @@ Note that multiple destructured types does not work
 
 </aside>
 
-### What else can we do?
 
-[Type narrowing a discriminated union](https://www.typescriptlang.org/play?ts=4.4.2#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQBQU1UA3lKJAFxQDkhwERarA3FABMAhsCEsCiFKn4BfStQA+dBuAgtWnAB7A+gkWKgBnXIRIyKFAGZwCAY2B4A9gShCBAgBTAAFqcMAVRwBBdxZ4ZDRMHHxiAG0AXQBKcUk0OioaABsIYAZHUUyyKAAGXgzqS0dUKA9bZ2MGX2JAkIEoR0tGvxb3RPSaAag6ggbDb0c4TIEAYUc0WwhA8Kkin1MegQA6RmhSPbYtHTLywbxOjzGJqdn5xcdltD7aE8GaYHyhQoBqcgfULyaRA2m2EokSZVe1DkEEyhmgz0hg3eBSgPy6zWC7hB+ghkPMA3xNFQOTgqBcyM+ZXMFGGhkc2U2mUcRA8JzcnliLxo9FBBgAjAAaFTMNgcLg8KAyIVc6g8-TqADsrCFO3Uh1YkuliLlonUAGZlcK1AcINoNVL5JCdQYAJwq1TqMXcVDmk5JCiJIA)
+[Type narrowing a discriminated union:](https://www.typescriptlang.org/play?ts=4.4.2#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQBQU1UA3lKJAFxQDkhwERarA3FABMAhsCEsCiFKn4BfStQA+dBuAgtWnAB7A+gkWKgBnXIRIyKFAGZwCAY2B4A9gShCBAgBTAAFqcMAVRwBBdxZ4ZDRMHHxiAG0AXQBKcUk0OioaABsIYAZHUUyyKAAGXgzqS0dUKA9bZ2MGX2JAkIEoR0tGvxb3RPSaAag6ggbDb0c4TIEAYUc0WwhA8Kkin1MegQA6RmhSPbYtHTLywbxOjzGJqdn5xcdltD7aE8GaYHyhQoBqcgfULyaRA2m2EokSZVe1DkEEyhmgz0hg3eBSgPy6zWC7hB+ghkPMA3xNFQOTgqBcyM+ZXMFGGhkc2U2mUcRA8JzcnliLxo9FBBgAjAAaFTMNgcLg8KAyIVc6g8-TqADsrCFO3Uh1YkuliLlonUAGZlcK1AcINoNVL5JCdQYAJwq1TqMXcVDmk5JCiJIA)
 
 ```ts
 type NumberOrString = 
@@ -343,6 +341,26 @@ console.log(
 ```
 
 ---
+
+<!-- .slide: style="text-align: left;" -->
+<aside class="notes">
+
+We're not done! There's even more
+we can do to enhance our type safety
+
+What can it be?
+
+It's a feature named template literal types 
+First shipped with 4.1 and keeps getting better
+
+</aside>
+
+### Bonus points!
+
+[Template literal strings:](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html)
+
+---
+
 <!-- .slide: style="text-align: left;" -->
 <aside class="notes">
 
@@ -351,8 +369,6 @@ But wait! There's still a problem!
 Strings that aren't numbers!
 
 What about them eh?
-
-Template literal types 4.1 and getting better
 
 </aside>
 
