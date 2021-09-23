@@ -124,16 +124,17 @@ and type safety improve
 We're going to write 
 an "add" function; a simple mechanism 
 for adding up numbers,
-using TypeScript 1.0 syntax 
 
 </aside>
 
-## add(1, '7', '3', 9)
+## add([1, '7', '3', 9])
 
 ---
 
 <!-- .slide: style="text-align: left;" -->
 <aside class="notes">
+
+The year is 2012, TS version 0.8
 
 Here's an implementation of our adder function
 You can see that it would take our combination
@@ -144,10 +145,10 @@ that types are correct
 
 </aside>
 
-[We begin with vanilla JS:](https://www.typescriptlang.org/play?noImplicitAny=false&ts=3.3.3#code/GYVwdgxgLglg9mABAQwCaoBQDodQBYxgDmAzgCpwCC6AlIgN4BQiLiANgKZSJRxTJtEAXkQAGANzNWwOACdEGCAhLd8hIhWqpEcYDwLFyVWgymtWMPRigBPAA4dd+9ZvTChIgOQrZ6z3SZzINZefkEAahEAORAAWwAjDllrAw1jVBpJYJYAX0QONhIOREsFWwcnNWJXbQ8vMDjE2X9TbKDQgURI52r0rOy8gqLWtpC+Tu6qtK1+4JyzRHnzWS4QWSQOtkl5oA)
+[We begin with vanilla JS:](https://www.typescriptlang.org/play?noImplicitAny=false&ts=3.3.3#code/GYVwdgxgLglg9mABAQwCaoBRQBYzAcwGcAVOAQXQEpEBvAKEUcQBsBTKRKOKZZxAXkQAGANwMmwOACdEGCAkIccefKQqpEcYJ1wES5KrXFMmMbVgCeAB1ZadKtegH9BAckVSVr6vRN+mXDx8ANSCAHIgALYARqxSWLqqBqiUYv6MAL6IrMyErIhmslDWttrKBI4aLm5gUbFS3kbpfoG8iKH2Fclp6Vk5eU3NAdxtHeVJ6j3+GcaIMyZS7CBSSK3MYjNAA)
 
 ```ts
-function add(...thingsToAdd) {
+function add(thingsToAdd) {
     let total = 0;
     for (const thingToAdd of thingsToAdd) {
         if (typeof thingToAdd === 'string') {
@@ -165,6 +166,8 @@ function add(...thingsToAdd) {
 ---
 
 <aside class="notes">
+
+The year is 2015
 
 When TypeScript 1.4 landed it brought
 a new feature called "union types"
@@ -195,14 +198,14 @@ TypeScript
 
 </aside>
 
-[Applied union types:](https://www.typescriptlang.org/play?ts=3.3.3#code/GYVwdgxgLglg9mABAQwCaoBQDodQBYxgDmAzgCpwCC6AXIhmCALYBGApgE6IA+iJUHQkQCUAbQC6wuo1adEAbwBQiFYgA2bKIihwoyNYgC8iAAwBuZauBwuGCAn7aCxCtVSI4wJ0PJV0whUtVVRgvDCgATwAHNk9vFz93Q2TEAHJ+QWJUgKVgvNUdPQMAamMAOWZ2DnDnIld-C3yVAF9ENjUSNkCmvML9RFL4usTGpuagxHHgjk0QDiQ+tQtxxXswEjgNLDU4Igw0TABGABo0gHZU09SAZkvEAE5hYSA)
+[Applied union types:](https://www.typescriptlang.org/play?ts=3.3.3#code/GYVwdgxgLglg9mABAQwCaoBRQBYzAcwGcAVOAQXQC5EMwQBbAIwFMAnRAH0UKlb3wCUAbQC6A6nSZtEAbwBQiRYgA2zKIihwoyZYgC8iAAwBuBUuBx2GCAh4bcBUhVSI4we-xLl0A2WaVKMO5YAJ4ADsxuHo7eLnrxiADkPHwEib7yAVlKmtq6ANQGAHIMLKxYDvhOPqbZigC+iMzKhMx+dVm5OoiF0VWxtXX1-ojDAaxqIKxIXcqmw3I2YIRwqgB0ynD4GGiYQgCMADRJAOyJx4kAzOeIAJxiAkA)
 
 ```ts
 any -> number | string
 ```
 
 ```ts
-function add(...thingsToAdd: (number | string)[]): number {
+function add(thingsToAdd: (number | string)[]): number {
     let total = 0;
     for (const thingToAdd of thingsToAdd) {
         if (typeof thingToAdd === 'string') {
@@ -228,7 +231,7 @@ But this could still be made better...
 
 </aside>
 
-[Applied type aliases:](https://www.typescriptlang.org/play?ts=3.3.3#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQGIqpQA+UAzroUQFCsBmcBAxsHgHsCUAIYATMQAoAdLOAALFgwAqAgIISAXLCppMOfMQDaAXQCU2ysjRQA3qyiOoAGwjAowAcBHOyUAAwA3A5OHAI0kjxCTB6KxKoaYlACHLFKCRJmdiFOTnipkqCQKWnx6hJkpOQA5EyGRNVZ9rktTp7evgDU5PDWqIVxRBliZsGtjgC+UBDODNDN47ntPlDdpUPlYmPjEzlQu7mobnCowsvOwbusUQQMAq7SzgJEkuJSAIwANFDVAOzV32qAGYAVAAJxmMxAA)
+[Applied type aliases:](https://www.typescriptlang.org/play?ts=3.3.3#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQGIqpQA+UAzroUQFCsBmcBAxsHgHsCUAIYATMQApgACxYMAKgICCEgFywqaTDnzEA2gF0AlBsrI0UAN6sodqABsIwKMAHARDslAAMAblt7DgEaSR4hJlc5YiVVMSgBDij5WIlja0D7ezwk6XAIROSYlQkyUnIAciY9Igr0myzG+zcPLwBqcngLVGloolSxYwCmuwBfKAgHBmgGkayWzygOov6SsWGR0cyoLazUZzhUYQWHAK3WcIIGAScAOgcBIklxKX0ARgAaKAqAdgqvioAZn+UAAnCZjEA)
 
 ```ts
 (number | string) -> NumberOrString
@@ -237,7 +240,7 @@ But this could still be made better...
 ```ts
 type NumberOrString = number | string
 
-function add(...thingsToAdd: NumberOrString[]): number {
+function add(thingsToAdd: NumberOrString[]): number {
     let total = 0;
     for (const thingToAdd of thingsToAdd) {
         if (typeof thingToAdd === 'string') {
@@ -254,6 +257,8 @@ function add(...thingsToAdd: NumberOrString[]): number {
 
 <aside class="notes">
 
+The year is 2021
+
 The next thing we want to talk about is the exciting
 feature that ships with TS 4.4.
 
@@ -264,6 +269,7 @@ The title is not catchy - so let's look at what it unlocks
 ### TypeScript 4.4
 
 - [Control Flow Analysis of Aliased Conditions and Discriminants](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html#control-flow-analysis-of-aliased-conditions-and-discriminants)
+- [Template literal types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html)
 
 ---
 
@@ -283,10 +289,10 @@ Let's go to the playground and look at it
 
 </aside>
 
-[Type narrowing with a const:](https://www.typescriptlang.org/play?ts=3.3.3#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQGIqpQA+UAzroUQFCsBmcBAxsHgHsCUAIYATMQAoAdLOAALFgwAqAgIISAXLCppMOfMQDaAXQCU2ysjRQA3qyiOoAGwjAowAcBHOyUAAwA3A5OHAI0kjxCTB6KxKoaYlACHLFKCRJmdiFOTlEEMQzyAnDOYgDCAmg8EKrw1jTkoJApafHqEmSk5ADkTIZEPcE5uVB4qZJFJWWV1bUC9dRZ9qOrHl4+UADU5ItokgosGWJmwWtQAL5QEM4M0CvnTp7evjttRMdnaxcjP7mobjgqGEzx8wR+rHyDAErmkzgEREk4ikAEYADRQHoAdh6GJ6AGZcVAAJxmMxAA)
+[Type narrowing with a const:](https://www.typescriptlang.org/play?ts=3.3.3#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQGIqpQA+UAzroUQFCsBmcBAxsHgHsCUAIYATMQApgACxYMAKgICCEgFywqaTDnzEA2gF0AlBsrI0UAN6sodqABsIwKMAHARDslAAMAblt7DgEaSR4hJlc5YiVVMSgBDij5WIlja0D7e3CCSIYZATgHMQBhATQeCCV4CxpyUEhE5JiVCTJScgByJj0iToDMrKg8JMl8wuKyiqqBGup0myGl13dPKABqcjm0aWiiVLFjAOWoAF8oCAcGaEWT+zcPL03m-daxY+XTwa+s1Gc4VDCB6eAJfVg5BgCJwAOgcAiIknEUn0AEYADRQToAdk6GM6AGZcVAAJwmYxAA)
 
 ```ts
-function add(...thingsToAdd: NumberOrString[]): number {
+function add(thingsToAdd: NumberOrString[]): number {
     let total = 0;
     for (const thingToAdd of thingsToAdd) {
         const shouldCoerceToNumber = 
@@ -317,23 +323,46 @@ Note that multiple destructured types does not work
 
 ### What else can we do?
 
-[Type narrowing a discriminated union](https://www.typescriptlang.org/play?ts=4.4.2#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQBQU1UA3lKJAFxQDkhwERarA3FABMAhsCEsCiFKn4BfStQA+dBuAgtWnAB7A+gkWKgBnXIRIyKFAGZwCAY2B4A9gShCBAgBQA6H8AAWpoYAKo4Agu4s8MhomDj4xADaALoAlOKSaHRUNAA2EMAMjqI5ZFAADLzZ1JaOqFAets7GDAHEIeECUI6WLYHt7ilZNMNQjQTNhn6OcDkCAMKOaLYQIVFSpf6m-QJejNCkB2xaOpVVI3g9HpPTswtLK45raIO0ZyM0wEVCJQDU5E+oDybNphdxeYSiFKVd7UOQQHKGaCvGEjT7FKB-Xogjrg-TQmHmYaEmiofJwVAuNHfSrmChjQyOPJeHKOIgeM5uTxvGj0CEGACMABoVMw2BwuDwoDJhdzqLz9OoAOysYV7dTHVhSmUo+WidQAZhVIrURwg2k10vkMN1BgAnKrVOpxdxUBazikKCkgA)
+[Type narrowing a discriminated union](https://www.typescriptlang.org/play?ts=4.4.2#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQBQU1UA3lKJAFxQDkhwERarA3FABMAhsCEsCiFKn4BfStQA+dBuAgtWnAB7A+gkWKgBnXIRIyKFAGZwCAY2B4A9gShCBAgBTAAFqcMAVRwBBdxZ4ZDRMHHxiAG0AXQBKcUk0OioaABsIYAZHUUyyKAAGXgzqS0dUKA9bZ2MGX2JAkIEoR0tGvxb3RPSaAag6ggbDb0c4TIEAYUc0WwhA8Kkin1MegQA6RmhSPbYtHTLywbxOjzGJqdn5xcdltD7aE8GaYHyhQoBqcgfULyaRA2m2EokSZVe1DkEEyhmgz0hg3eBSgPy6zWC7hB+ghkPMA3xNFQOTgqBcyM+ZXMFGGhkc2U2mUcRA8JzcnliLxo9FBBgAjAAaFTMNgcLg8KAyIVc6g8-TqADsrCFO3Uh1YkuliLlonUAGZlcK1AcINoNVL5JCdQYAJwq1TqMXcVDmk5JCiJIA)
 
 ```ts
 type NumberOrString = 
     { type: 'integer'; data: number; } 
   | { type: 'text'; data: string }
 
-function add(...thingsToAdd: NumberOrString[]): number { /**/ }
+function add(thingsToAdd: NumberOrString[]): number { /**/ }
 
 console.log(
-    add(
+    add([
         { data: 1, type: 'integer' }, 
         { data: '7', type: 'text' }, 
         { data: '3', type: 'text' }, 
         { data: 9, type: 'integer' }
-    )
+    ])
 )
+```
+
+---
+<!-- .slide: style="text-align: left;" -->
+<aside class="notes">
+
+But wait! There's still a problem!
+
+Strings that aren't numbers!
+
+What about them eh?
+
+Template literal types 4.1 and getting better
+
+</aside>
+
+### Strings that are only digits
+
+[Template literal strings:](https://www.typescriptlang.org/play?ts=4.4.2#code/C4TwDgpgBAysBOBLAdgcwOqOACwCKNSwGcB5ZAGxCgF4oADAEgG9kBXAWwCMJ4BfOgFChIUAHIdu8EvDhI0NKGy48oAH1gIUGLHgLEylAQIBmrZAGNgiAPbIoAQwAmjgBQ4tRACrWAgs4BcYhI80rJaANoAugCUgUqSUEwCUClQ5BDAUMDWwPbkCgAMANzJqcbW8FAu5rZEme5o3n6OUNbGWdgeTc7RiaWpqTXIdVBE2Nas5I4AwtY85hDe4sqVtMIQbR1a3S3Ue1AA5HVyqAcl-QNQiO0uYxNTs-OL1suSvUmXn1k5eVAA1LRXjw3J1Gr4eiUvlBeFAIOQiNAPlDUtlcvkAVswc1IV9eBc8QN4BlWPA7Ki8iU8QIhkRrOkAHTkayoFxOVzhACMABpDgB2A48g4AZgFUAAnDFokA)
+
+```ts
+type StringWithDigitsOnly = `${number}`
+type NumberOrString = number | StringWithDigitsOnly
 ```
 
 ---
@@ -359,7 +388,6 @@ if (exists) {
 }
 ```
 
-
 ---
 
 <!-- .slide: style="text-align: center;" -->
@@ -368,11 +396,13 @@ if (exists) {
 Finally, here's something in a similar space
 which perhaps TS may support in future
 
+TypeScript allowing number only string types: https://stackoverflow.com/questions/66294091/how-to-create-a-type-that-describes-string-with-only-digits 
+
 </aside>
 
 ### TypeScript: getting better all the time
 
-- https://github.com/microsoft/TypeScript/pull/44730
-- https://github.com/microsoft/TypeScript/issues/12184 November 2016
-- https://blog.logrocket.com/typescript-4-4-and-more-readable-code/
+- [PR that landed control flow analysis of aliased conditional expressions and discriminants](https://github.com/microsoft/TypeScript/pull/44730)
+- [GitHub issue from 2016 it resolved](https://github.com/microsoft/TypeScript/issues/12184)
+- [Original blog post](https://blog.logrocket.com/typescript-4-4-and-more-readable-code/)
 
