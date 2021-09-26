@@ -145,7 +145,7 @@ that types are correct
 
 </aside>
 
-[We begin with vanilla JS:](https://www.typescriptlang.org/play?noImplicitAny=false&ts=3.3.3#code/GYVwdgxgLglg9mABAQwCaoBRQBYzAcwGcAVOAQXQEpEBvAKEUcQBsBTKRKOKZZxAXkQAGANwMmwOACdEGCAkIccefKQqpEcYJ1wES5KrXFMmMbVgCeAB1ZadKtegH9BAckVSVr6vRN+mXDx8ANSCAHIgALYARqxSWLqqBqiUYv6MAL6IrMyErIhmslDWttrKBI4aLm5gUbFS3kbpfoG8iKH2Fclp6Vk5eU3NAdxtHeVJ6j3+GcaIMyZS7CBSSK3MYjNAA)
+[We begin with vanilla JS:](https://www.typescriptlang.org/play?noImplicitAny=false&ts=3.3.3#code/GYVwdgxgLglg9mABAQwCaoBRQBYzAcwGcAVOAQXQEpEBvAKEUcQBsBTKRKOKZZxAXkQAGANwMmwOACdEGCAkIccefKQqpEcYJ1wES5KrXFMmMbVgCeAB1ZadKtegH9BAckVSVr6vRN+mXDx8ANSCAHIgALYARqxSWLqqBqiUYv6MAL6IrMyErIhmslDWttrKBI4aLm5gUbFS3kbpfoG8iKH2Fclp6Vk5eU3NAdhScADuiGCsEwCiUqPxrmDciGPYyBwAktkAHjbQrKjePf4ZxohnJlLsIFJIrcxiZ0A)
 
 ```ts
 function add(thingsToAdd) {
@@ -156,7 +156,7 @@ function add(thingsToAdd) {
         } else if (typeof thingToAdd === 'number') {
             total += thingToAdd;
         } else {
-            total += thingToAdd;
+            throw new Error('not what I expected');
         }
     }
     return total;
@@ -194,11 +194,12 @@ TypeScript
 
 <!-- .slide: style="text-align: left;" -->
 <aside class="notes">
-...
+
+TypeScript uses `typeof` to narrow types in the type system
 
 </aside>
 
-[Applied union types:](https://www.typescriptlang.org/play?ts=3.3.3#code/GYVwdgxgLglg9mABAQwCaoBRQBYzAcwGcAVOAQXQC5EMwQBbAIwFMAnRAH0UKlb3wCUAbQC6A6nSZtEAbwBQiRYgA2zKIihwoyZYgC8iAAwBuBUuBx2GCAh4bcBUhVSI4we-xLl0A2WaVKMO5YAJ4ADsxuHo7eLnrxiADkPHwEib7yAVlKmtq6ANQGAHIMLKxYDvhOPqbZigC+iMzKhMx+dVm5OoiF0VWxtXX1-ojDAaxqIKxIXcqmw3I2YIRwqgB0ynD4GGiYQgCMADRJAOyJx4kAzOeIAJxiAkA)
+[Applied union types:](https://www.typescriptlang.org/play?ts=4.4.2#code/GYVwdgxgLglg9mABAQwCaoBRQBYzAcwGcAVOAQXQC5EMwQBbAIwFMAnRAH0UKlb3wCUAbQC6A6nSZtEAbwBQiRYgA2zKIihwoyZYgC8iAAwBuBUuBx2GCAh4bcBUhVSI4we-xLl0A2WaVKMO5YAJ4ADsxuHo7eLnrxiADkPHwEib7yAVlKmtq6ANQGAHIMLKxYDvhOPqbZigC+iszKhMyIQTRQ4ZHuOPzVcQmJkmXpfnVZuTqIhdFVsbV1jc2t4xNKAPQbiADqAKKIACIA8kWJxIhFe3uHiMQAEgCSAMoAhP7rOKxwAO6IYMw-ntWN9ysMtIgfthkOpHohmAAPCLQZiodKLbL1D5YgKsNQgVhIKbKUxYuQ2MCEOCqAB0yjg+AwaEwQgAjAAaJIAdkSnMSAGZeYgAJxiARAA)
 
 ```ts
 any -> number | string
@@ -210,8 +211,11 @@ function add(thingsToAdd: (number | string)[]): number {
     for (const thingToAdd of thingsToAdd) {
         if (typeof thingToAdd === 'string') {
             total += Number(thingToAdd);
-        } else {
+        }  else if (typeof thingToAdd === 'number') {
             total += thingToAdd;
+        } else {
+            // WE DON'T NEED THIS!
+            throw new Error('not what I expected');
         }
     }
     return total;
@@ -391,7 +395,7 @@ which perhaps TS may support in future
 
 </aside>
 
-### [An idea for the future](https://www.typescriptlang.org/play?ts=3.3.3#code/MYewdgzgLgBAhgEwQJwKYQumBeGZUDuMAsnAA4A80yAlmAOYA0M1d9AfABQBQMfMAbQEByAFYgAFmDABPAPpoaAGyUzhzYQBlwCcMIC6+7gEoA3N1CRYqAB41oEHPCRoM6AHQS4ETmMnT5RRU1M25uGgAzGE5beygIYxgAb15+S2hnFHQIAC4WKFoGJ0Qstwh3elQoX3EpWQVUZVVhUIBfIA)
+### [An idea for the future](https://www.typescriptlang.org/play?ts=4.4.2#code/MYewdgzgLgBAhgEwQJwKYQumBeGZUDuMAsnAA4A80yAlmAOYA0M1d9AfABQBQMfMAbQEByAFYgAFmDABPAPpoaAGyUzhzYQBlwCcMIC6+7gEoA3N1CRYqAB41oEHPCRoM6AHQS4ETmMnT5RRU1M25uGgAzGE5beygIYxgAb15+S2hnFHQIAC4WKFoGJ0Qstwh3elQoX3EpWQVUZVVhUP4YdJAlVHclEHpOEtcE7gBfbiA)
 
 ```ts
 const addresses = new Map<string, string>(
@@ -401,6 +405,7 @@ const exists = addresses.has('johnny_reilly');
 
 if (exists) {
     const address: string = addresses.get('johnny_reilly');
+    console.log(address)
 }
 ```
 
