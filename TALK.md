@@ -177,6 +177,10 @@ having multiple explicit types.
 It had a sister feature called "type aliases"
 which "variable-ified" a type, thus reducing verbosity.
 
+With it came type guards; typescript is now
+type narrowing aware!
+
+
 Interestingly union types had already landed
 in Flow and up to that point in time, were
 a compelling reason to favour Flow over
@@ -189,6 +193,7 @@ TypeScript
 
 - [Union types](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-4.html#union-types)
 - [Type aliases](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-4.html#type-aliases)
+- [Type guards](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-4.html#type-guards)
 
 ---
 
