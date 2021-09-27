@@ -366,7 +366,14 @@ First shipped with 4.1 and keeps getting better
 
 ### Bonus points!
 
-[Template literal strings:](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html)
+[Template literal strings](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html)
+
+```ts
+type World = "world";
+type Greeting = `hello ${World}`;
+// ...
+type Greeting = "hello world"
+```
 
 ---
 
