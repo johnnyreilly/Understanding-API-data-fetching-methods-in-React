@@ -56,6 +56,8 @@ had just been resolved by a PR of Anders'.
 I tweeted about it because I was excited about it
 </aside>
 
+"indirect type narrowing via const"
+
 [![Screenshot of initial tweet](images/tweet-screenshot.png =500x)](https://www.twitter.com/johnny_reilly/status/1408162514504933378)
 
 ---
@@ -232,6 +234,9 @@ function add(thingsToAdd: (number | string)[]): number {
 <!-- .slide: style="text-align: left;" -->
 <aside class="notes">
 
+const shouldCoerceToNumber = 
+    typeof thingToAdd === 'string';
+
 Talk through function - we are now both:
 - type safe
 - and have an expressively named type
@@ -240,7 +245,7 @@ But this could still be made better...
 
 </aside>
 
-[Applied type aliases:](https://www.typescriptlang.org/play?ts=3.3.3#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQGIqpQA+UAzroUQFCsBmcBAxsHgHsCUAIYATMQApgACxYMAKgICCEgFywqaTDnzEA2gF0AlBsrI0UAN6sodqABsIwKMAHARDslAAMAblt7DgEaSR4hJlc5YiVVMSgBDij5WIlja0D7ezwk6XAIROSYlQkyUnIAciY9Igr0myzG+zcPLwBqcngLVGloolSxYwCmuwBfKAgHBmgGkayWzygOov6SsWGR0cyoLazUZzhUYQWHAK3WcIIGAScAOgcBIklxKX0ARgAaKAqAdgqvioAZn+UAAnCZjEA)
+[Applied type aliases and type guards:](https://www.typescriptlang.org/play?ts=3.3.3#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQGIqpQA+UAzroUQFCsBmcBAxsHgHsCUAIYATMQApgACxYMAKgICCEgFywqaTDnzEA2gF0AlBsrI0UAN6sodqABsIwKMAHARDslAAMAblt7DgEaSR4hJlc5YiVVMSgBDij5WIlja0D7ezwk6XAIROSYlQkyUnIAciY9Igr0myzG+zcPLwBqcngLVGloolSxYwCmuwBfKAgHBmgGkayWzygOov6SsWGR0cyoLazUZzhUYQWHAK3WcIIGAScAOgcBIklxKX0ARgAaKAqAdgqvioAZn+UAAnCZjEA)
 
 ```ts
 (number | string) -> NumberOrString
@@ -277,7 +282,10 @@ The title is not catchy - so let's look at what it unlocks
 
 ### TypeScript 4.4
 
-- [Control Flow Analysis of Aliased Conditions and Discriminants](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html#control-flow-analysis-of-aliased-conditions-and-discriminants)
+[Control Flow Analysis of Aliased Conditions and Discriminants](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html#control-flow-analysis-of-aliased-conditions-and-discriminants)
+
+- Type narrowing with a const
+- Type narrowing a discriminated union
 
 ---
 
@@ -330,21 +338,21 @@ Note that multiple destructured types does not work
 </aside>
 
 
-[Type narrowing a discriminated union:](https://www.typescriptlang.org/play?ts=4.4.2#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQBQU1UA3lKJAFxQDkhwERarA3FABMAhsCEsCiFKn4BfStQA+dBuAgtWnAB7A+gkWKgBnXIRIyKFAGZwCAY2B4A9gShCBAgBTAAFqcMAVRwBBdxZ4ZDRMHHxiAG0AXQBKcUk0OioaABsIYAZHUUyyKAAGXgzqS0dUKA9bZ2MGX2JAkIEoR0tGvxb3RPSaAag6ggbDb0c4TIEAYUc0WwhA8Kkin1MegQA6RmhSPbYtHTLywbxOjzGJqdn5xcdltD7aE8GaYHyhQoBqcgfULyaRA2m2EokSZVe1DkEEyhmgz0hg3eBSgPy6zWC7hB+ghkPMA3xNFQOTgqBcyM+ZXMFGGhkc2U2mUcRA8JzcnliLxo9FBBgAjAAaFTMNgcLg8KAyIVc6g8-TqADsrCFO3Uh1YkuliLlonUAGZlcK1AcINoNVL5JCdQYAJwq1TqMXcVDmk5JCiJIA)
+[Type narrowing a discriminated union:](https://www.typescriptlang.org/play?ts=4.4.2#code/C4TwDgpgBAcgrgWwEYQE4HlUGVioJYB2A5lALxQBQU1UA3lAO4AWAhsAIIICSAXFAOSFgEImn4BuKABM2LPgUQpUkgL6VqAHzqNWHbn37CAHsAnTZfAM65CJFRQoAzOAQDGwPAHsCUFlKkAFMBMtpYAKp7s-nzwyGiYOPjEANoAugCU8opodFQ0ADYQwFDAnsAs+WRQAAziedSOnqhQAa7e1iUhxBFRUlCejp2hPf7puTQTUG0EHZZMnnD5UgDCnmiuEBGxSlXBtiNSAHTMbJxcZKTkhhAmEg6TNHiDAXMLS6vrm57baGO09Q8aKVypUANTkH6oIJdIgHQ4ycrpOqAqBqCD5SzQf4oibAipQcFDbqRfzw2TIwH2CZUmioIpwVA+PH5Or2CjTSyeQqHfKeIgBAF+QLJAETegIuRQACMABodKd9AIhCIxKi5aKaOKLAIAOz8OUnPS8ATGUxq9SArXlAwAZn18qNBlN-HNGuoVslAE4DbozgZlaJUC6adQMhR0kA)
 
 ```ts
 type NumberOrString = 
-    { type: 'integer'; data: number; } 
-  | { type: 'text'; data: string }
+    { whatAmI: 'integer'; data: number; } 
+  | { whatAmI: 'text'; data: string }
 
 function add(thingsToAdd: NumberOrString[]): number { /**/ }
 
 console.log(
     add([
-        { data: 1, type: 'integer' }, 
-        { data: '7', type: 'text' }, 
-        { data: '3', type: 'text' }, 
-        { data: 9, type: 'integer' }
+        { data: 1, whatAmI: 'integer' }, 
+        { data: '7', whatAmI: 'text' }, 
+        { data: '3', whatAmI: 'text' }, 
+        { data: 9, whatAmI: 'integer' }
     ])
 )
 ```
