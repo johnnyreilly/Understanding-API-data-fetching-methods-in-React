@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Demo1 from "./Demo1";
 import Demo2 from "./Demo2";
 import Demo3 from "./Demo3";
+import Demo4 from "./Demo4";
 
 LogRocket.init("o9dvab/johnnyreillycom");
 
@@ -17,6 +18,7 @@ const navLinks = [
   { to: "/", text: "Demo 1" },
   { to: "/demo-2", text: "Demo 2" },
   { to: "/demo-3", text: "Demo 3" },
+  { to: "/demo-4", text: "Demo 4" },
 ];
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
@@ -44,8 +46,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           </nav>
           <Routes>
             <Route path="/" element={<Demo1 />} />
-            <Route path="demo-2" element={<Demo2 />} />
-            <Route path="demo-3" element={<Demo3 />} />
+            <Route path="/demo-2" element={<Demo2 />} />
+            <Route path="/demo-3" element={<Demo3 />} />
+            <Route path="/demo-4" element={<Demo4 />} />
           </Routes>
         </div>
       </QueryClientProvider>
