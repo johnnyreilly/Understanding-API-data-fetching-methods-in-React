@@ -23,11 +23,14 @@ general welcome
 <!-- .slide: data-transition="slide" data-background="./images/" data-background-size="600px" -->
 ## `whoami` ❤️🌻
 
+Engineer @ Investec
+
+Blogging and open-source software
+
 - [fosstodon.org/@johnny_reilly](https://fosstodon.org/@johnny_reilly)
 - [twitter.com/johnny_reilly](https://twitter.com/johnny_reilly)
 - [github.com/johnnyreilly](https://github.com/johnnyreilly)
 
-- Blogging and open-source software
 
   - TypeScript
   - DefinitelyTyped
@@ -40,7 +43,7 @@ My name is John Reilly and I'm a big fan of TypeScript.
 
 I'm an early adopter, I started using it right back when 0.8 was initially announced. I love static typing. 
 
-definitely typed / ts-loader / fork-ts-checker-webpack-plugin (webpack)
+definitely typed / ts-loader / docusaurus
 </aside>
 
 ---
